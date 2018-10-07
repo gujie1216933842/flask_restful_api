@@ -5,7 +5,7 @@ api = Redprint('book')
 
 
 @api.route('/get')
-def get_user():
+def get_book():
     return 'get book'
 
 

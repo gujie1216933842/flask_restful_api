@@ -2,7 +2,7 @@ from flask import Blueprint
 from app.libs.redprint import Redprint
 
 
-api = Redprint('book')
-@api.route('')
+api = Redprint('user')
+@api.route('get')
 def get_user():
-    return 'i am qiyue1111'
+    return 'get user'
