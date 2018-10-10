@@ -16,6 +16,8 @@ def register_plugin(app):
 
 # from app import
 def create_app():
+    print('-----------------------')
+
     app = Flask(__name__)
     app.config.from_object('app.config.setting')
     app.config.from_object('app.config.secure')
