@@ -12,9 +12,13 @@ def create_client():
     # 注册 登录
     # 参数 校验 接受参数
     # wtforms 验证表单
+    print('hahahha')
     data = request.json
-    form = ClientForm(data=data)
+    print(data)
+    form = UserEmailForm()
+    print(form)
     if form.validate():
+        # print('1232131')
         promise = {
             ClientTypeEnum.USER_EMAIL: __register_user_by_email
         }
