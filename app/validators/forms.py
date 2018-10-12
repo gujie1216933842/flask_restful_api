@@ -7,7 +7,7 @@ from app.validators.base import BaseForm
 class ClientForm(BaseForm):
     account = StringField(validators=[DataRequired(), length(min=5, max=32)])
     secret = StringField()
-    type = IntegerField(validators=[DataRequired])
+    type = IntegerField(validators=[DataRequired()])
 
     def validate_type(self, value):
         try:
