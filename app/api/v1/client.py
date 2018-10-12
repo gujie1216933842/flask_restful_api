@@ -22,7 +22,7 @@ def create_client():
     return 'success'
 
 
-def __register_user_by_email(form):
+def __register_user_by_email():
     form = UserEmailForm(data=request.json)
     if form.validate():
         User.register_by_email(form.nickname.data,
