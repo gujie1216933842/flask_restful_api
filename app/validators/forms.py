@@ -2,8 +2,9 @@ from app.libs.enums import ClientTypeEnum
 from wtforms import Form, StringField, IntegerField, PasswordField
 from wtforms.validators import DataRequired, length, Email, Regexp,ValidationError
 from app.models.user import User
+from app.validators.base import BaseForm
 
-class ClientForm(Form):
+class ClientForm(BaseForm):
     account = StringField(validators=[DataRequired(), length(min=5, max=32)])
     secret = StringField()
     type = IntegerField(validators=[DataRequired])

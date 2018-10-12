@@ -2,6 +2,8 @@ from app.libs.redprint import Redprint
 from flask import request
 from app.validators.forms import ClientTypeEnum,ClientForm,UserEmailForm
 from app.models.user import User
+from werkzeug.exceptions import HTTPException
+from app.libs.error_code import Success
 api = Redprint('client')
 
 
@@ -12,23 +14,19 @@ def create_client():
     # 注册 登录
     # 参数 校验 接受参数
     # wtforms 验证表单
-    print('hahahha')
     data = request.json
-    print(data)
-    form = UserEmailForm()
-    print(form)
-    if form.validate():
-        # print('1232131')
-        promise = {
-            ClientTypeEnum.USER_EMAIL: __register_user_by_email
-        }
-        promise[form.type.data]()
-    return 'success'
+    print('aaaaaaaaaaa')
+    form = ClientForm().validate_for_api()
+    print('bbbbbbbbbbb')
+    promise = {
+        ClientTypeEnum.USER_EMAIL: __register_user_by_email
+    }
+    promise[form.type.data]()
+    return Success()
 
 
 def __register_user_by_email():
-    form = UserEmailForm(data=request.json)
-    if form.validate():
-        User.register_by_email(form.nickname.data,
-                               form.account.data,
-                               form.secret.data)
+    form = UserEmailForm().validate_for_api()
+    User.register_by_email(form.nickname.data,
+                           form.account.data,
+                           form.secret.data)
